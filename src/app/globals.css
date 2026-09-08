@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #fafafa;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --border: #e4e4e7;
+    --primary: #4f46e5;
+    --primary-foreground: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #090d16;
+      --foreground: #f4f4f5;
+      --card: #121826;
+      --card-foreground: #f4f4f5;
+      --border: #1e293b;
+      --primary: #6366f1;
+      --primary-foreground: #ffffff;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Highlight section target when jumped to via table of contents */
+:target {
+  scroll-margin-top: 7rem;
+  animation: target-fade 2.5s ease-out;
+}
+
+@keyframes target-fade {
+  0% {
+    background-color: rgba(99, 102, 241, 0.15);
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  50% {
+    background-color: rgba(99, 102, 241, 0.05);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.4);
+}
+
+/* Glass effect utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass {
+    background: rgba(15, 23, 42, 0.7);
+  }
+}
